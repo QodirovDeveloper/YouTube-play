@@ -8,20 +8,17 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
     integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
     crossorigin="anonymous" referrerpolicy="no-referrer" />
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" />
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded" rel="stylesheet" />
 
   <!-- Material Symbols uchun CSS sozlamalar -->
   <style>
-    .material-symbols-outlined {
-      font-family: 'Material Symbols Outlined';
+    .material-symbols-rounded {
       font-variation-settings:
         'FILL' 0,
         'wght' 400,
         'GRAD' 0,
         'opsz' 24;
-      font-size: 24px;
-      /* ixtiyoriy: o'lcham */
-      vertical-align: middle;
+      font-size: 24px; /* optional, for scaling */
     }
 
     * {
@@ -185,7 +182,7 @@
       transition: opacity 0.13s ease;
     }
 
-    .playback-content button:hover ~ .speed-options{
+    .playback-content .speed-options.show{
       opacity: 1;
       pointer-events: auto;
     }
@@ -225,7 +222,7 @@
           <button class="volume">
             <i class="fa-solid fa-volume-high"></i>
           </button>
-          <input type="range">
+          <input type="range" min="0" max="1" step="any">
           <div class="video-timer">
             <p class="current-time">00:00</p>
             <p class="separator"> / </p>
@@ -237,7 +234,7 @@
             <i class="fa-solid fa-backward-step"></i>
           </button>
           <button class="play-pause">
-            <i class="fa-solid fa-pause"></i>
+            <i class="fa-solid fa-play"></i>
           </button>
           <button class="skip-forward">
             <i class="fa-solid fa-forward-step"></i>
@@ -246,20 +243,20 @@
         <li class="options right">
           <div class="playback-content">
             <button class="playback-speed">
-              <span class="material-symbols-outlined">
+              <span class="material-symbols-rounded">
                 slow_motion_video
               </span>
             </button>
             <ul class="speed-options">
-              <li>2x</li>
-              <li>1.5x</li>
-              <li class="active">Normal</li>
-              <li>0.75x</li>
-              <li>0.5x</li>
+              <li data-speed="2">2x</li>
+              <li data-speed="1.5">1.5x</li>
+              <li data-speed="1" class="active">Normal</li>
+              <li data-speed="0.75">0.75x</li>
+              <li data-speed="0.5">0.5x</li>
             </ul>
           </div>
           <button class="pic-in-pic">
-            <span class="material-symbols-outlined">
+            <span class="material-symbols-rounded">
               picture_in_picture_alt
             </span>
           </button>
@@ -271,8 +268,9 @@
     </div>
     <video src="/videos/Jah-Khalib–Доча.mp4"></video>
   </div>
-  <!--
-  <i class="fa-solid fa-compress"></i>
+
+  <!-- <i class="fa-solid fa-compress"></i>
+  <i class="fa-solid fa-pause"></i>
 
   <i class="fa-regular fa-bell"></i>
   <i class="fa-solid fa-chevron-down"></i>
@@ -282,8 +280,8 @@
   <i class="fa-solid fa-download"></i>
   <i class="fa-solid fa-scissors"></i>
   <i class="fa-solid fa-ellipsis"></i>
-  <i class="fa-solid fa-ellipsis-vertical"></i>
- -->
+  <i class="fa-solid fa-ellipsis-vertical"></i> -->
+
 
   <!-- Fixed Navbar -->
   <!-- <nav class="fixed top-0 left-0 w-full z-[999] p-4 border-b border-gray-300 bg-white">
