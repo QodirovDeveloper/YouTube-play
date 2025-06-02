@@ -44,7 +44,7 @@
         justify-content: center;
       }
 
-      .container {
+      .containerr {
         width: 98%;
         max-width: 900px;
         position: relative;
@@ -53,7 +53,7 @@
         overflow: hidden;
       }
 
-      .container.fullscreen {
+      .containerr.fullscreen {
         max-width: 100%;
         width: 100%;
       }
@@ -207,12 +207,12 @@
         background: #2289ff;
       }
 
-      .container video {
+      .containerr video {
         width: 100%;
       }
     </style>
 
-    <title>Modal with Background Disabled</title>
+    <title>Youtube Clone-2</title>
   </head>
 
   <body>
@@ -257,7 +257,7 @@
       class="fixed inset-0 z-[100] flex items-center bg-black/30 opacity-0 pointer-events-none transition-opacity duration-300"
     >
       <div class="w-full max-w-[1100px]">
-        <div class="container">
+        <div class="containerr">
           <div class="wrapper">
             <div class="video-timeline">
               <div class="progress-area">
@@ -341,7 +341,7 @@
         body.classList.remove("overflow-hidden");
       });
 
-      const container = document.querySelector(".container"),
+      const container = document.querySelector(".containerr"),
         mainVideo = container.querySelector("video"),
         videoTimeline = container.querySelector(".video-timeline"),
         progressBar = container.querySelector(".progress-bar"),
