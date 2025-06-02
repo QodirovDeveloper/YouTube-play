@@ -53,8 +53,9 @@ mainVideo.addEventListener("timeupdate", (e) => {
   currentVidTime.innerText = formatTime(currentTime);
 });
 
-mainVideo.addEventListener("loadeddate", (e) => {
+mainVideo.addEventListener("loadedmetadata", (e) => {
   videoDuration.innerText = formatTime(e.target.duration);
+  volumeSlider.value = mainVideo.volume;
 });
 
 videoTimeline.addEventListener("click", (e) => {

@@ -1,275 +1,280 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- <script src="https://cdn.tailwindcss.com"></script> -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+      integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded"
+      rel="stylesheet"
+    />
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <!-- <script src="https://cdn.tailwindcss.com"></script> -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
-    integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
-    crossorigin="anonymous" referrerpolicy="no-referrer" />
-  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded" rel="stylesheet" />
+    <!-- Material Symbols uchun CSS sozlamalar -->
+    <style>
+      .material-symbols-rounded {
+        font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24;
+        font-size: 24px; /* optional, for scaling */
+      }
 
-  <!-- Material Symbols uchun CSS sozlamalar -->
-  <style>
-    .material-symbols-rounded {
-      font-variation-settings:
-        'FILL' 0,
-        'wght' 400,
-        'GRAD' 0,
-        'opsz' 24;
-      font-size: 24px; /* optional, for scaling */
-    }
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
 
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+      body {
+        min-height: 100vh;
+        background: #e3f2fd;
+      }
 
-    body {
-      min-height: 100vh;
-      background: #e3f2fd;
-    }
+      body,
+      .video-controls,
+      .video-timer,
+      .options {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
 
-    body,
-    .video-controls,
-    .video-timer,
-    .options {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
+      .container {
+        width: 98%;
+        max-width: 900px;
+        position: relative;
+        background: #000;
+        border-radius: 5px;
+        overflow: hidden;
+      }
 
-    .container {
-      width: 98%;
-      max-width: 900px;
-      position: relative;
-      background: #000;
-      border-radius: 5px;
-      overflow: hidden;
-    }
+      .container.fullscreen {
+        max-width: 100%;
+        width: 100%;
+      }
 
-    .wrapper {
-      position: absolute;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      z-index: 1;
-    }
+      .wrapper {
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: 1;
+      }
 
-    .wrapper::before {
-      content: "";
-      bottom: 0;
-      width: 100%;
-      z-index: -1;
-      position: absolute;
-      height: calc(100% + 35px);
-      background: linear-gradient(to top, rgba(0, 0, 0, 0.7), transparent);
-    }
+      .wrapper::before {
+        content: "";
+        bottom: 0;
+        width: 100%;
+        z-index: -1;
+        position: absolute;
+        height: calc(100% + 35px);
+        background: linear-gradient(to top, rgba(0, 0, 0, 0.7), transparent);
+      }
 
-    .video-timeline{
-      height: 7px;
-      width: 100%;
-      cursor: pointer;
-    }
+      .video-timeline {
+        height: 7px;
+        width: 100%;
+        cursor: pointer;
+      }
 
-    .video-timeline .progress-area{
-      height: 3px;
-      position: relative;
-      background: rgba(255, 255, 255, 0.6);
-    }
+      .video-timeline .progress-area {
+        height: 3px;
+        position: relative;
+        background: rgba(255, 255, 255, 0.6);
+      }
 
-    .progress-area span {
-      position: absolute;
-      left: 50%;
-      top: -25px;
-      font-size: 13px;
-      color: #fff;
-      transform: translateX(-50%);
-    }
+      .progress-area span {
+        position: absolute;
+        left: 50%;
+        top: -25px;
+        font-size: 13px;
+        color: #fff;
+        transform: translateX(-50%);
+      }
 
-    .progress-area .progress-bar{
-      width: 50%;
-      height: 100%;
-      position: relative;
-      background: #2289ff;
-    }
+      .progress-area .progress-bar {
+        width: 50%;
+        height: 100%;
+        position: relative;
+        background: #2289ff;
+      }
 
-    .progress-area .progress-bar::before{
-      content: "";
-      right: 0;
-      top: 50%;
-      height: 13px;
-      width: 13px;
-      background: inherit;
-      position: absolute;
-      border-radius: 50%;
-      transform: translateY(-50%);
-    }
+      .progress-area .progress-bar::before {
+        content: "";
+        right: 0;
+        top: 50%;
+        height: 13px;
+        width: 13px;
+        background: inherit;
+        position: absolute;
+        border-radius: 50%;
+        transform: translateY(-50%);
+      }
 
-    .progress-area span, .progress-area .progress-bar::before{
-      display: none;
-    }
+      .progress-area span,
+      .progress-area .progress-bar::before {
+        display: none;
+      }
 
-    .video-timeline:hover .progress-area span,
-    .video-timeline:hover .progress-area .progress-bar::before{
-      display: block;
-    }
+      .video-timeline:hover .progress-area span,
+      .video-timeline:hover .progress-area .progress-bar::before {
+        display: block;
+      }
 
-    .video-controls {
-      padding: 5px 20px 10px;
-    }
+      .video-controls {
+        padding: 5px 20px 10px;
+      }
 
-    .video-controls .options {
-      width: 100%;
-    }
+      .video-controls .options {
+        width: 100%;
+      }
 
-    .video-controls .options:first-child{
-      justify-content: flex-start;
-    }
-    .video-controls .options:last-child{
-      justify-content: flex-end;
-    }
+      .video-controls .options:first-child {
+        justify-content: flex-start;
+      }
+      .video-controls .options:last-child {
+        justify-content: flex-end;
+      }
 
-    .options button {
-      width: 40px;
-      height: 40px;
-      border: none;
-      color: #fff;
-      cursor: pointer;
-      font-size: 19px;
-      background: none;
-    }
+      .options button {
+        width: 40px;
+        height: 40px;
+        border: none;
+        color: #fff;
+        cursor: pointer;
+        font-size: 19px;
+        background: none;
+      }
 
-    .options button :where(i, span){
-      width: 100%;
-      height: 100%;
-      line-height: 40px;
-    }
+      .options button :where(i, span) {
+        width: 100%;
+        height: 100%;
+        line-height: 40px;
+      }
 
-    .options input{
-      height: 4px;
-      max-width: 75px;
-    }
+      .options input {
+        height: 4px;
+        max-width: 75px;
+      }
 
-    .options .video-timer{
-      font-size: 14px;
-      color: #efefef;
-      margin-left: 15px;
-    }
+      .options .video-timer {
+        font-size: 14px;
+        color: #efefef;
+        margin-left: 15px;
+      }
 
-    .video-timer .separator{
-      font-size: 16px;
-      margin: 0 5px;
-      font-family: sans-serif;
-    }
+      .video-timer .separator {
+        font-size: 16px;
+        margin: 0 5px;
+        font-family: sans-serif;
+      }
 
-    .playback-content{
-      position: relative;
-    }
+      .playback-content {
+        position: relative;
+      }
 
-    .playback-content .speed-options{
-      position: absolute;
-      bottom: 40px;
-      left: -40px;
-      width: 95px;
-      opacity: 0;
-      pointer-events: none;
-      list-style: none;
-      background: #fff;
-      border-radius: 4px;
-      transition: opacity 0.13s ease;
-    }
+      .playback-content .speed-options {
+        position: absolute;
+        bottom: 40px;
+        left: -40px;
+        width: 95px;
+        opacity: 0;
+        pointer-events: none;
+        list-style: none;
+        background: #fff;
+        border-radius: 4px;
+        transition: opacity 0.13s ease;
+      }
 
-    .playback-content .speed-options.show{
-      opacity: 1;
-      pointer-events: auto;
-    }
+      .playback-content .speed-options.show {
+        opacity: 1;
+        pointer-events: auto;
+      }
 
-    .speed-options li{
-      cursor: pointer;
-      font-size: 14px;
-      padding: 5px 0 5px 15px;
-    }
+      .speed-options li {
+        cursor: pointer;
+        font-size: 14px;
+        padding: 5px 0 5px 15px;
+      }
 
-    .speed-options li.active{
-      color: #fff;
-      background: #2289ff;
-    }
+      .speed-options li.active {
+        color: #fff;
+        background: #2289ff;
+      }
 
-    .container video {
-      width: 100%;
-    }
-  </style>
-  <title>Modal with Background Disabled</title>
-</head>
+      .container video {
+        width: 100%;
+      }
+    </style>
+    <title>Modal with Background Disabled</title>
+  </head>
 
-<body>
-
-  <div class="container">
-    <div class="wrapper">
-      <div class="video-timeline">
-        <div class="progress-area">
-          <span>00:00</span>
-          <div class="progress-bar">
-
+  <body>
+    <div class="container">
+      <div class="wrapper">
+        <div class="video-timeline">
+          <div class="progress-area">
+            <span>00:00</span>
+            <div class="progress-bar"></div>
           </div>
         </div>
-      </div>
-      <ul class="video-controls">
-        <li class="options left">
-          <button class="volume">
-            <i class="fa-solid fa-volume-high"></i>
-          </button>
-          <input type="range" min="0" max="1" step="any">
-          <div class="video-timer">
-            <p class="current-time">00:00</p>
-            <p class="separator"> / </p>
-            <p class="video-duration">00:00</p>
-          </div>
-        </li>
-        <li class="options center">
-          <button class="skip-backward">
-            <i class="fa-solid fa-backward-step"></i>
-          </button>
-          <button class="play-pause">
-            <i class="fa-solid fa-play"></i>
-          </button>
-          <button class="skip-forward">
-            <i class="fa-solid fa-forward-step"></i>
-          </button>
-        </li>
-        <li class="options right">
-          <div class="playback-content">
-            <button class="playback-speed">
+        <ul class="video-controls">
+          <li class="options left">
+            <button class="volume">
+              <i class="fa-solid fa-volume-high"></i>
+            </button>
+            <input type="range" min="0" max="1" step="any" />
+            <div class="video-timer">
+              <p class="current-time">00:00</p>
+              <p class="separator">/</p>
+              <p class="video-duration">00:00</p>
+            </div>
+          </li>
+          <li class="options center">
+            <button class="skip-backward">
+              <i class="fa-solid fa-backward-step"></i>
+            </button>
+            <button class="play-pause">
+              <i class="fa-solid fa-play"></i>
+            </button>
+            <button class="skip-forward">
+              <i class="fa-solid fa-forward-step"></i>
+            </button>
+          </li>
+          <li class="options right">
+            <div class="playback-content">
+              <button class="playback-speed">
+                <span class="material-symbols-rounded">
+                  slow_motion_video
+                </span>
+              </button>
+              <ul class="speed-options">
+                <li data-speed="2">2x</li>
+                <li data-speed="1.5">1.5x</li>
+                <li data-speed="1" class="active">Normal</li>
+                <li data-speed="0.75">0.75x</li>
+                <li data-speed="0.5">0.5x</li>
+              </ul>
+            </div>
+            <button class="pic-in-pic">
               <span class="material-symbols-rounded">
-                slow_motion_video
+                picture_in_picture_alt
               </span>
             </button>
-            <ul class="speed-options">
-              <li data-speed="2">2x</li>
-              <li data-speed="1.5">1.5x</li>
-              <li data-speed="1" class="active">Normal</li>
-              <li data-speed="0.75">0.75x</li>
-              <li data-speed="0.5">0.5x</li>
-            </ul>
-          </div>
-          <button class="pic-in-pic">
-            <span class="material-symbols-rounded">
-              picture_in_picture_alt
-            </span>
-          </button>
-          <button class="fullscreen">
-            <i class="fa-solid fa-expand"></i>
-          </button>
-        </li>
-      </ul>
+            <button class="fullscreen">
+              <i class="fa-solid fa-expand"></i>
+            </button>
+          </li>
+        </ul>
+      </div>
+      <video src="/videos/Jah-Khalib–Доча.mp4"></video>
     </div>
-    <video src="/videos/Jah-Khalib–Доча.mp4"></video>
-  </div>
 
-  <!-- <i class="fa-solid fa-compress"></i>
+    <!-- <i class="fa-solid fa-compress"></i>
   <i class="fa-solid fa-pause"></i>
 
   <i class="fa-regular fa-bell"></i>
@@ -282,9 +287,8 @@
   <i class="fa-solid fa-ellipsis"></i>
   <i class="fa-solid fa-ellipsis-vertical"></i> -->
 
-
-  <!-- Fixed Navbar -->
-  <!-- <nav class="fixed top-0 left-0 w-full z-[999] p-4 border-b border-gray-300 bg-white">
+    <!-- Fixed Navbar -->
+    <!-- <nav class="fixed top-0 left-0 w-full z-[999] p-4 border-b border-gray-300 bg-white">
     <div class="flex justify-between items-center">
       <div>Navbar</div>
       <div>
@@ -297,15 +301,15 @@
     </div>
   </nav> -->
 
-  <!-- open -->
-  <!-- <div id="page-content" class="p-4">
+    <!-- open -->
+    <!-- <div id="page-content" class="p-4">
     <div class="flex justify-center items-center h-[60vh]">
       <button id="open">Open Modal</button>
     </div>
   </div> -->
 
-  <!-- Modal -->
-  <!-- <div id="modal_overlay"
+    <!-- Modal -->
+    <!-- <div id="modal_overlay"
     class="fixed inset-0 z-[100] flex items-center justify-center bg-black/30 opacity-0 pointer-events-none transition-opacity duration-300">
 
     <div class="bg-white p-4 w-[90%] max-w-md">
@@ -318,11 +322,6 @@
     </div>
   </div> -->
 
-
-
-
-  <script src="/app.js"></script>
-
-</body>
-
+    <script src="/app.js"></script>
+  </body>
 </html>
