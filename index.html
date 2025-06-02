@@ -17,6 +17,7 @@
     />
 
     <!-- Material Symbols uchun CSS sozlamalar -->
+
     <style>
       .material-symbols-rounded {
         font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24;
@@ -29,12 +30,12 @@
         box-sizing: border-box;
       }
 
-      body {
+      .body {
         min-height: 100vh;
         background: #e3f2fd;
       }
 
-      body,
+      .body,
       .video-controls,
       .video-timer,
       .options {
@@ -210,6 +211,7 @@
         width: 100%;
       }
     </style>
+
     <title>Modal with Background Disabled</title>
   </head>
 
@@ -252,13 +254,9 @@
     <!-- Modal -->
     <div
       id="modal_overlay"
-      class="fixed inset-0 z-[100] flex items-center justify-center bg-black/30 opacity-0 pointer-events-none transition-opacity duration-300"
+      class="fixed inset-0 z-[100] flex items-center bg-black/30 opacity-0 pointer-events-none transition-opacity duration-300"
     >
-      <div class="bg-white p-4 w-[90%] max-w-md">
-        <div>
-          <p>Modal matni: bu yerda nimadir bo‘ladi.</p>
-        </div>
-
+      <div class="w-full max-w-[1100px]">
         <div class="container">
           <div class="wrapper">
             <div class="video-timeline">
@@ -334,16 +332,15 @@
       open.addEventListener("click", () => {
         modal.classList.remove("opacity-0", "pointer-events-none");
         modal.classList.add("opacity-100", "pointer-events-auto");
-        body.classList.add("overflow-hidden"); // Scroll ni o'chirish
+        body.classList.add("overflow-hidden");
       });
 
       close.addEventListener("click", () => {
         modal.classList.remove("opacity-100", "pointer-events-auto");
         modal.classList.add("opacity-0", "pointer-events-none");
-        body.classList.remove("overflow-hidden"); // Scroll ni tiklash
+        body.classList.remove("overflow-hidden");
       });
 
-      //
       const container = document.querySelector(".container"),
         mainVideo = container.querySelector("video"),
         videoTimeline = container.querySelector(".video-timeline"),
@@ -465,7 +462,6 @@
       });
 
       fullscreenBtn.addEventListener("click", () => {
-        // container.classList.toggle("fullscreen");
         if (document.fullscreenElement) {
           document.exitFullscreen().then(() => {
             fullscreenBtn.classList.replace("fa-compress", "fa-expand");
